@@ -33,7 +33,8 @@ target_compile_definitions(usb_camera_driver
   PRIVATE "COMPOSITION_BUILDING_DLL")
 
 ament_target_dependencies(usb_camera_driver
-    "rclcpp"
+    rclcpp
+    rclcpp_components
     "sensor_msgs"
     "std_msgs"
     "cv_bridge"
@@ -43,7 +44,7 @@ ament_target_dependencies(usb_camera_driver
     "OpenCV")
 
 rclcpp_components_register_nodes(usb_camera_driver "usb_camera_driver::CameraDriver")
-set(node_plugins "${node_plugins}usb_camera_driver::CameraDriver;$<TARGET_FILE:usb_camera_driver>\n")
+set(node_plugins "${node_plugins}usb_camera_driver::CameraDriver;$<TARGET_FILE:usb_camera_driver>")
 
 add_executable(usb_camera_driver_node
   src/usb_camera_driver_node.cpp)
